@@ -6,9 +6,11 @@ const tokenHandler = require("../handlers/tokenHandler");
 //postを作成
 router.post("/create", tokenHandler.verifyToken, postController.create);
 
+//ユーザーが投稿したpostを全て取得
+router.get("/search", tokenHandler.verifyToken, postController.getAll);
+
 /*
-//ログインしているユーザーが投稿したメモを全て取得
-router.get("/search", tokenHandler.verifyToken, memoController.getAll);
+
 
 //ログインしているユーザーが投稿したメモを1つ取得
 router.get("/search/:postId", tokenHandler.verifyToken, memoController.getOne);

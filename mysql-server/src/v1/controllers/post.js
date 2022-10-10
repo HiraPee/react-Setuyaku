@@ -19,3 +19,16 @@ exports.create = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+exports.getAll = async (req, res) => {
+  console.log("getAll");
+  try {
+    const sql = "SELECT * FROM posts ORDER BY timeline DESC";
+    await database().query(sql, (err, posts, results) => {
+      if (err) throw err;
+      res.status(201).json(posts);
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};

@@ -25,15 +25,19 @@ exports.verifyToken = async (req, res, next) => {
   //console.log(req);
   if (tokenDecoded) {
     const sql = "SELECT * FROM users  WHERE name = ? LIMIT 1";
-    await database().query(sql, [tokenDecoded.username], (err, rows, results) => {
-      if (err) throw err;
-      if (!rows) {
-        return res.status(401).json("権限がありません");
-      }
-      req.user = rows;
-      //console.log("JWT認証成功");
-      next();
-    });
+    try {
+      await database().query(sql, [tokenDecoded.username], (err, rows, results) => {
+        if (err) throw err;
+        if (!rows) {
+          return res.status(401).json("権限がありません");
+        }
+        req.user = rows;
+        //console.log("JWT認証成功");
+        next();
+      });
+    } catch (err) {
+      return res.status(401).json(err);
+    }
   } else {
     return res.status(401).json("権限がありません");
   }

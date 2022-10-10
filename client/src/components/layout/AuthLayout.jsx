@@ -16,6 +16,8 @@ const AuthLayout = () => {
       console.log(isAuth);
       if (isAuth) {
         navigate("/");
+      } else {
+        navigate("login");
       }
     };
     checkAuth();
