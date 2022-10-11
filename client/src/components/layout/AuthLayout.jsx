@@ -12,12 +12,17 @@ const AuthLayout = () => {
     //JWTを持っているか確認する
     const checkAuth = async () => {
       //認証チェック
-      const isAuth = await authUtils.isAuthenticated();
-      console.log(isAuth);
-      if (isAuth) {
-        navigate("/");
-      } else {
-        navigate("login");
+
+      try {
+        const isAuth = await authUtils.isAuthenticated();
+        console.log(isAuth);
+        if (isAuth) {
+          navigate("/");
+        } else {
+          navigate("login");
+        }
+      } catch (err) {
+        console.log(err);
       }
     };
     checkAuth();
@@ -35,7 +40,7 @@ const AuthLayout = () => {
           }}
         >
           <img src={money_eco_logo} alt="" style={{ width: 100, height: 100, marginBottom: 3 }} />
-          節約術共有アプリ
+          節約術・リサイクル術共有アプリ
         </Box>
         <Outlet />
       </Container>

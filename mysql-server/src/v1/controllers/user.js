@@ -19,7 +19,7 @@ exports.register = async (req, res) => {
       if (err) throw err;
     });
     //database().end();
-    console.log("登録");
+    //console.log("登録");
 
     return res.status(200).json({ params, token });
   } catch (err) {

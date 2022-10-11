@@ -26,7 +26,7 @@ router.post(
   userController.register
 );
 
-router.post("/login", body("username").isLength({ min: 8 }).withMessage("ユーザー名は8文字以上である必要があります"), body("password").isLength({ min: 8 }).withMessage("パスワードは8文字以上である必要があります"), validation.validate, userController.login);
+router.post("/login", body("username").isLength({ min: 4 }).withMessage("ユーザー名は4文字以上である必要があります"), body("password").isLength({ min: 8 }).withMessage("パスワードは8文字以上である必要があります"), validation.validate, userController.login);
 
 router.post("/verify-token", tokenHandler.verifyToken, (req, res) => {
   return res.status(200).json({ user: req.user });

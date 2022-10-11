@@ -34,7 +34,7 @@ function App() {
             <Route path="post" element={<Post />} />
             <Route index element={<Search />} />
             <Route path="search" element={<Search />} />
-            <Route path="search/:searchId" element={<Searched />} />
+            <Route path="search/:postId" element={<Searched />} />
           </Route>
         </Routes>
       </BrowserRouter>

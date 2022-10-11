@@ -21,12 +21,25 @@ exports.create = async (req, res) => {
 };
 
 exports.getAll = async (req, res) => {
-  console.log("getAll");
   try {
     const sql = "SELECT * FROM posts ORDER BY timeline DESC";
     await database().query(sql, (err, posts, results) => {
       if (err) throw err;
       res.status(201).json(posts);
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+exports.getOne = async (req, res) => {
+  const { postId } = req.params;
+  try {
+    const sql = "SELECT * FROM posts  WHERE postId = ?";
+    await database().query(sql, [postId], (err, rows, results) => {
+      //console.log(rows);
+      if (err) throw err;
+      res.status(201).json(rows[0]);
     });
   } catch (err) {
     res.status(500).json(err);

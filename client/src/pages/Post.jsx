@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import FormControl from "@mui/material/FormControl";
@@ -9,6 +10,7 @@ import postApi from "../api/postApi";
 
 const Post = () => {
   const [contents, setContents] = useState("");
+  const navigate = useNavigate();
   const [forms, setForms] = useState(1);
 
   const handleChange = (e) => {
@@ -24,6 +26,7 @@ const Post = () => {
     const description = data.get("description");
     try {
       await postApi.create({ category, title, description });
+      navigate("/search");
     } catch (err) {
       console.log(err);
     }

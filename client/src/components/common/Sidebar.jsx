@@ -61,15 +61,6 @@ const Sidebar = () => {
         </ListItemButton>
 
         <Box sx={{ paddingTop: "10px" }}></Box>
-
-        <ListItemButton>
-          <Box sx={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <Typography fontWeight="700">プライベート</Typography>
-            <IconButton>
-              <AddBoxOutlinedIcon />
-            </IconButton>
-          </Box>
-        </ListItemButton>
       </List>
     </Drawer>
   );

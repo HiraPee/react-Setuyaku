@@ -4,13 +4,13 @@ const { database } = require("../models/sql"); //mysqlに接続するための�
 //クライアントから渡されたJWTが正常化検証
 const tokenDecode = (req) => {
   const bearerHeader = req.headers["authorization"];
+  console.log("tokenDecode");
   if (bearerHeader) {
     const bearer = bearerHeader.split(" ")[1];
     try {
       const decodedToken = JWT.verify(bearer, process.env.TOKEN_SECRET_KEY);
       return decodedToken;
     } catch {
-      console.log("false");
       return false;
     }
   } else {
@@ -22,12 +22,11 @@ const tokenDecode = (req) => {
 
 exports.verifyToken = async (req, res, next) => {
   const tokenDecoded = tokenDecode(req);
-  //console.log(req);
+  console.log("verify-token");
   if (tokenDecoded) {
     const sql = "SELECT * FROM users  WHERE name = ? LIMIT 1";
     try {
       await database().query(sql, [tokenDecoded.username], (err, rows, results) => {
-        if (err) throw err;
         if (!rows) {
           return res.status(401).json("権限がありません");
         }
