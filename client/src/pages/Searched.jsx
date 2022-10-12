@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import postApi from "../api/postApi";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Typography, IconButton } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Searched = () => {
   const { postId } = useParams();
@@ -30,7 +31,13 @@ const Searched = () => {
       <Container component="main" maxWidth="40%">
         <Box border={1} borderRadius="borderRadius">
           <Box id="title" sx={{ ml: 4 }}>
-            <Typography sx={{ fontSize: "40px" }}>{post.title}</Typography>
+            <Box sx={{ display: "flex" }}>
+              <IconButton component={Link} to={"/search"} sx={{ mr: 10 }}>
+                <ArrowBackIcon />
+              </IconButton>
+              <Typography sx={{ fontSize: "40px" }}>{post.title}</Typography>
+            </Box>
+
             <Typography sx={{ mt: "20px" }}>投稿日: {day}</Typography>
             <Typography>by: {post.postUserName}</Typography>
 

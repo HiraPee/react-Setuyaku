@@ -1,6 +1,6 @@
 import axiosClient from "./axiosClient";
 
-const memoApi = {
+const postApi = {
   create: (params) => axiosClient.post("post/create", params),
   getAll: () => axiosClient.get("post/search"),
   getOne: (id) => axiosClient.get(`post/search/${id}`),
@@ -8,4 +8,4 @@ const memoApi = {
   //delete: (id) => axiosClient.delete(`memo/${id}`),
 };
 
-export default memoApi;
+export default postApi;

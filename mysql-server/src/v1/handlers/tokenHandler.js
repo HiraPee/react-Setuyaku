@@ -4,7 +4,7 @@ const { database } = require("../models/sql"); //mysqlに接続するための�
 //クライアントから渡されたJWTが正常化検証
 const tokenDecode = (req) => {
   const bearerHeader = req.headers["authorization"];
-  console.log("tokenDecode");
+  //console.log("tokenDecode");
   if (bearerHeader) {
     const bearer = bearerHeader.split(" ")[1];
     try {
@@ -22,7 +22,7 @@ const tokenDecode = (req) => {
 
 exports.verifyToken = async (req, res, next) => {
   const tokenDecoded = tokenDecode(req);
-  console.log("verify-token");
+  //console.log("verify-token");
   if (tokenDecoded) {
     const sql = "SELECT * FROM users  WHERE name = ? LIMIT 1";
     try {
