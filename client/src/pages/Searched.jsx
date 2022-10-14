@@ -3,6 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import postApi from "../api/postApi";
 import { Box, Container, Typography, IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useSelector } from "react-redux";
+import Favorite from "./Favorite";
 
 const Searched = () => {
   const { postId } = useParams();
@@ -14,7 +16,7 @@ const Searched = () => {
     const getPost = async () => {
       try {
         const res = await postApi.getOne(postId);
-        //console.log(res);
+        console.log(res);
         setPost(res);
         const timeline = res.timeline.split("T");
         setDay(timeline[0]);
@@ -35,7 +37,10 @@ const Searched = () => {
               <IconButton component={Link} to={"/search"} sx={{ mr: 10 }}>
                 <ArrowBackIcon />
               </IconButton>
-              <Typography sx={{ fontSize: "40px" }}>{post.title}</Typography>
+
+              <Box sx={{ display: "flex", ml: 1, justifyContent: "space-between" }}>
+                <Typography sx={{ fontSize: "40px" }}>{post.title}</Typography>
+              </Box>
             </Box>
 
             <Typography sx={{ mt: "20px" }}>投稿日: {day}</Typography>

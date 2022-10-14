@@ -7,6 +7,7 @@ exports.register = async (req, res) => {
   //パスワードの暗号化
   const password = req.body.password;
   req.body.password = CryptoJS.AES.encrypt(password, process.env.SECRET_KEY).toString();
+  console.log("登録");
 
   try {
     //ユーザー新規作成
@@ -20,6 +21,7 @@ exports.register = async (req, res) => {
     });
     //database().end();
     //console.log("登録");
+    console.log("登録完了");
 
     return res.status(200).json({ params, token });
   } catch (err) {
@@ -35,8 +37,9 @@ exports.login = async (req, res) => {
 
   try {
     await database().query(sql, [username], (err, rows, results) => {
+      console.log(rows);
       //ユーザーが存在しているか
-      if (rows.length === 0) {
+      if (!Object.keys(rows).length) {
         return res.status(401).json({
           errs: [
             {

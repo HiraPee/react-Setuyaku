@@ -15,11 +15,8 @@ const AuthLayout = () => {
 
       try {
         const isAuth = await authUtils.isAuthenticated();
-        console.log(isAuth);
         if (isAuth) {
           navigate("/");
-        } else {
-          navigate("login");
         }
       } catch (err) {
         console.log(err);

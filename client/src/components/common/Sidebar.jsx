@@ -1,20 +1,24 @@
 import { Drawer, IconButton, List, ListItemButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import LogoutOutlinedIcon from "@mui/icons-material/LoginOutlined";
-import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
-import React from "react";
+import React, { useEffect } from "react";
 import assets from "../../assets/index";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
 
   const logout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
+
+  useEffect(() => {
+    console.log(user);
+  }, [dispatch]);
 
   return (
     <Drawer
@@ -27,7 +31,7 @@ const Sidebar = () => {
       }}
     >
       <List sx={{ width: 250, height: "100vh", backgroundColor: assets.colors.secondary }}>
-        <ListItemButton>
+        <ListItemButton component={Link} to={"/home"}>
           <Box sx={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <Typography fontWeight="700">{user.name}</Typography>
             <IconButton onClick={logout}>
@@ -54,7 +58,7 @@ const Sidebar = () => {
 
         <Box sx={{ paddingTop: "10px" }}></Box>
 
-        <ListItemButton>
+        <ListItemButton component={Link} to={"/favorite"}>
           <Box sx={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <Typography fontWeight="700">🌟お気に入り</Typography>
           </Box>

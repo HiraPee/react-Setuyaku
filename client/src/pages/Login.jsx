@@ -41,8 +41,10 @@ const Login = () => {
 
     try {
       const res = await authApi.login({ username, password });
+      console.log(res);
       localStorage.setItem("token", res.token);
       console.log("ログイン成功");
+      localStorage.setItem("userName", res.rows[0].name);
       navigate("/");
     } catch (err) {
       //console.log(err);

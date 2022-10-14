@@ -9,6 +9,9 @@ router.post("/create", tokenHandler.verifyToken, postController.create);
 //ユーザーが投稿したpostを全て取得
 router.get("/search", tokenHandler.verifyToken, postController.getAll);
 
+//ユーザーが投稿したpostを全て取得
+router.post("/home", tokenHandler.verifyToken, postController.getUserPosts);
+
 //ユーザーが投稿したpostを1つ取得
 router.get("/search/:postId", tokenHandler.verifyToken, postController.getOne);
 

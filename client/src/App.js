@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import Post from "./pages/Post";
 import Search from "./pages/Search";
 import Searched from "./pages/Searched";
+import Favorited from "./pages/Favorited";
 
 function App() {
   const theme = createTheme({
@@ -34,6 +35,8 @@ function App() {
             <Route path="post" element={<Post />} />
             <Route index element={<Search />} />
             <Route path="search" element={<Search />} />
+            <Route index element={<Favorited />} />
+            <Route path="favorite" element={<Favorited />} />
             <Route path="search/:postId" element={<Searched />} />
           </Route>
         </Routes>
