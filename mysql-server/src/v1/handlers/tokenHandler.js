@@ -32,6 +32,7 @@ exports.verifyToken = async (req, res, next) => {
         }
         req.user = rows;
         //console.log("JWT認証成功");
+        database().end();
         next();
       });
     } catch (err) {

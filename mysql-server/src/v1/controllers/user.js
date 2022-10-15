@@ -22,9 +22,11 @@ exports.register = async (req, res) => {
     //database().end();
     //console.log("登録");
     console.log("登録完了");
+    database().end();
 
     return res.status(200).json({ params, token });
   } catch (err) {
+    database().end();
     return res.status(500).json(err);
   }
 };
@@ -66,7 +68,9 @@ exports.login = async (req, res) => {
       console.log("ログイン成功");
       return res.status(201).json({ rows, token });
     });
+    database().end();
   } catch (err) {
+    database().end();
     return res.status(500).json(err);
   }
 };

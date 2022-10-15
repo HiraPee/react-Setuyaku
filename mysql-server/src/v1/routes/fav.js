@@ -7,7 +7,7 @@ const tokenHandler = require("../handlers/tokenHandler");
 router.post("/create", tokenHandler.verifyToken, favController.create);
 
 //ユーザーがお気に入りしたpostを全て取得
-router.post("/isFav/", tokenHandler.verifyToken, favController.getOne);
+router.post("/isFav/", tokenHandler.verifyToken, favController.isFav);
 
 //ユーザーがお気に入りしたpostを全て取得
 router.get("/search", tokenHandler.verifyToken, favController.getAll);

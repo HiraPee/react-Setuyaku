@@ -12,10 +12,13 @@ exports.create = async (req, res) => {
     await database().query(sql, params, (err, rows, results) => {
       //if (err) throw err;
       console.log("投稿を保存しました");
-      return res.status(201).json(rows);
+      database().end();
+      res.status(201).json(rows);
     });
+    database().end();
   } catch (err) {
-    return res.status(500).json(err);
+    database().end();
+    res.status(500).json(err);
   }
 };
 
@@ -24,10 +27,14 @@ exports.getAll = async (req, res) => {
     const sql = "SELECT * FROM posts ORDER BY timeline DESC";
     await database().query(sql, (err, posts, results) => {
       //if (err) throw err;
-      return res.status(201).json(posts);
+
+      res.status(201).json(posts);
     });
+    database().end();
+    console.log("post_getAll");
   } catch (err) {
-    return res.status(500).json(err);
+    database().end();
+    res.status(500).json(err);
   }
 };
 
@@ -39,10 +46,12 @@ exports.getUserPosts = async (req, res) => {
     const sql = "SELECT * FROM posts WHERE postUserName = ? ORDER BY timeline DESC";
     await database().query(sql, [userName], (err, posts, results) => {
       //if (err) throw err;
-      return res.status(201).json(posts);
+      res.status(201).json(posts);
     });
+    database().end();
   } catch (err) {
-    return res.status(500).json(err);
+    database().end();
+    res.status(500).json(err);
   }
 };
 
@@ -51,11 +60,14 @@ exports.getOne = async (req, res) => {
   try {
     const sql = "SELECT * FROM posts  WHERE postId = ?";
     await database().query(sql, [postId], (err, rows, results) => {
-      //console.log(rows);
+      console.log(rows);
       //if (err) throw err;
-      return res.status(201).json(rows[0]);
+
+      res.status(201).json(rows[0]);
     });
+    database().end();
   } catch (err) {
-    return res.status(500).json(err);
+    database().end();
+    res.status(500).json(err);
   }
 };

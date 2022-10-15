@@ -46,7 +46,8 @@ const Favorite = (props) => {
     //console.log(userName);
 
     try {
-      await favApi.create({ userName, favPostId });
+      const res = await favApi.create({ userName, favPostId });
+      console.log(res);
       setFaved(true);
     } catch (err) {
       console.log(err);
