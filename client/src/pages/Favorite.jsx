@@ -25,7 +25,7 @@ const Favorite = (props) => {
     } catch (err) {
       console.log(err);
     }
-  }, [faved]);
+  }, []);
 
   const removeFav = async (item) => {
     //const userName = user.name;
@@ -46,8 +46,7 @@ const Favorite = (props) => {
     //console.log(userName);
 
     try {
-      const res = await favApi.create({ userName, favPostId });
-      console.log(res);
+      await favApi.create({ userName, favPostId });
       setFaved(true);
     } catch (err) {
       console.log(err);

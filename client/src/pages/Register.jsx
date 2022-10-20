@@ -52,9 +52,10 @@ const Register = () => {
 
     try {
       const res = await authApi.register({ username, password, confirmPassword });
+      //console.log(res);
       localStorage.setItem("token", res.token);
-      console.log("新規登録成功");
-      console.log(res);
+      //console.log("新規登録成功");
+      //console.log(res);
 
       localStorage.setItem("userName", username);
       navigate("/");

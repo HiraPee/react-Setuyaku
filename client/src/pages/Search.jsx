@@ -31,6 +31,7 @@ const Search = () => {
           <>
             <Box sx={{ border: 2, borderRadius: 1, padding: 2 }}>
               <Box sx={{ display: "flex", ml: 1, justifyContent: "space-between" }}>
+                {item.postId}
                 <Typography> タイトル: {item.title}</Typography>
                 <Favorite data={item} />
               </Box>

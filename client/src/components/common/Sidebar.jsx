@@ -9,16 +9,11 @@ import { useSelector, useDispatch } from "react-redux";
 const Sidebar = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.value);
-  const dispatch = useDispatch();
 
   const logout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-
-  useEffect(() => {
-    console.log(user);
-  }, [dispatch]);
 
   return (
     <Drawer

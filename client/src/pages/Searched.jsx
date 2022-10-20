@@ -16,7 +16,6 @@ const Searched = () => {
     const getPost = async () => {
       try {
         const res = await postApi.getOne(postId);
-        console.log(res);
         setPost(res);
         const timeline = res.timeline.split("T");
         setDay(timeline[0]);
