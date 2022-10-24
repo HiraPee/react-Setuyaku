@@ -71,4 +71,4 @@ Mysql(8.0.30)
 
 #### お気に入りした投稿
 
-![favs](imgs/favs.png.png)
+![favs](imgs/favs.png)
